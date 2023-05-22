@@ -1,0 +1,74 @@
+services:
+  frontend:
+    env_file:
+      - .env
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile.dev
+    networks:
+      - collective-translate-dev
+    volumes:
+      - ./frontend:/app/frontend
+  backend:
+    env_file:
+      - .env
+    build:
+      context: ./crud
+      dockerfile: ./Dockerfile.dev
+    networks:
+      - collective-translate-dev
+    volumes:
+      - ./crud:/app/crud
+  scheduler:
+    env_file:
+      - .env
+    build:
+      context: ./scheduler
+      dockerfile: ./Dockerfile.dev
+    networks:
+      - collective-translate-dev
+    volumes:
+      - ./scheduler:/app/scheduler
+  nginx:
+    env_file:
+      - .env
+    image: nginx:alpine
+    networks:
+      - collective-translate-dev
+    ports:
+      - 5000:80
+    volumes:
+      - "./proxy/nginx.dev.conf:/etc/nginx/nginx.conf"
+  db:
+    env_file:
+      - .env
+    image: postgres:alpine
+    networks:
+      - collective-translate-dev
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pg:/docker-entrypoint-initdb.d
+    #   - ./db:/var/lib/postgresql/data
+  s3:
+    image: minio/minio
+    command: server --console-address ":9001" /data/
+    networks:
+      - collective-translate-dev
+    volumes:
+      - ./s3:/data
+    ports:
+      - 9001:9001
+    environment:
+      - MINIO_ROOT_USER=${S3_ACCESS_KEY_ID}
+      - MINIO_ROOT_PASSWORD=${S3_SECRET_ACCESS_KEY}
+  redis:
+    image: redis/redis-stack:latest
+    networks:
+      - collective-translate-dev
+    ports:
+      - 8001:8001
+      - 6379:6379
+
+networks:
+  collective-translate-dev:

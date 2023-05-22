@@ -1,0 +1,12 @@
+export const API_ENDPOINT = "api/crud";
+export const PROJECT_ENDPOINT = "project";
+export const TRANSLATION_ENDPOINT = "translation";
+export const TEXT_SEGMENT_ENDPOINT = "text-segment";
+export const FILE_ENDPOINT = "files";
+export const AUTH_ENDPOINT = "auth";
+export const REGISTER_ENDPOINT = "register";
+export const LOGIN_ENDPOINT = "login";
+export const USER_ENDPOINT = "user";
+export const MY_PROFILE_ENDPOINT = "me";
+export const REFRESH_ENDPOINT = "refresh";
+export const LANGUAGE_ENDPOINT = "language";

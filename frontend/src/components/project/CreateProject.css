@@ -1,0 +1,14 @@
+.create-project-wrapper {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-project-wrapper>:not(:first-child) {
+    margin-top: 5px;
+}
+
+.create-project-description {
+    resize: vertical;
+    min-height: 100px;
+}

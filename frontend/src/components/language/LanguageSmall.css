@@ -1,0 +1,31 @@
+.language-small {
+    border: 1px solid;
+    border-bottom: 0;
+    padding: 10px;
+}
+
+.language-small_info {
+    display: flex;
+}
+
+.language-small:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.language-small:last-child {
+    border-bottom: 1px solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.language-small *:not(:first-child) {
+    margin-left: 5px;
+}
+
+.language-small__original {
+    background-color: gray;
+    border-radius: 5px;
+    color: white;
+    padding: 0px 4px;
+}

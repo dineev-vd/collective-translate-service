@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "baseUrl": "./src",
+    "jsx": "preserve",
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "strict": false,
+    "outDir": "../dist/frontend",
+    "allowSyntheticDefaultImports": true,
+    "preserveSymlinks": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.css"
+  ],
+}

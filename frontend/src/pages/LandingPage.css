@@ -1,0 +1,60 @@
+.landing-page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-page_wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: fit-content;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border-color: gray;
+}
+
+.landing-page_search {
+    height: 2rem;
+    width: 300px;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0px 10px;
+}
+
+.landing-page_wrapper>:not(:first-child) {
+    margin-top: 10px;
+}
+
+.landing-page_or {
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.landing-page_or::after, .landing-page_or::before {
+    content: "";
+    border-bottom: 1px solid;
+    margin: auto;
+    flex: 1 1;
+}
+
+.landing-page_or::after {
+    margin-left: 10px;
+    margin-right: 1px;
+}
+
+.landing-page_or::before {
+    margin-right: 10px;
+    margin-left: 1px;
+}
+
+.landing-page_create-button {
+    height: 2rem;
+    font-family: inherit;
+    font-size: 1rem;
+}

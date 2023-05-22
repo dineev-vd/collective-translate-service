@@ -1,0 +1,41 @@
+.file-peek {
+    width: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.file-peek>:not(:first-child) {
+    margin-top: 10px;
+}
+
+.file-peek_process>:not(:first-child) {
+    margin-left: 5px;
+}
+
+.file-peek_process {
+    display: flex;
+}
+
+.file-peek_text {
+    overflow: scroll;
+    flex: 1 1 auto;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    max-height: 700px;
+}
+
+.file-peek_marked_1 {
+    background-color: lightsalmon;
+}
+
+.file-peek_marked_2 {
+    background-color: lightseagreen;
+}
+
+.file-peek_marked_0 {
+    background-color: lightgreen;
+}

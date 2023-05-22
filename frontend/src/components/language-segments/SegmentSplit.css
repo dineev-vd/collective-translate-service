@@ -1,0 +1,23 @@
+.segment-split {
+  display: flex;
+
+  padding: 10px;
+}
+
+.segment-split__uncommited-change {
+  border: 1px solid darkorange;
+  outline: none;
+}
+
+.segment-split_part {
+  flex: 1 1 auto;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.segment-split_textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: none;
+  margin-top: 10px;
+}

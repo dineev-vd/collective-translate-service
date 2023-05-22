@@ -1,0 +1,16 @@
+.tab-link {
+    border: 1px solid gray;
+    padding: 5px 10px;
+    border-bottom: 0;
+    border-radius: 5px 5px 0 0;
+    background-color: white;
+}
+
+.tab-link__active {
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-bottom: 1px solid white;
+    border-radius: 5px 5px 0 0;
+    background-color: white;
+    z-index: 1000;
+}

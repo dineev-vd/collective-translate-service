@@ -1,0 +1,25 @@
+.top_menu_wrapper {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: auto;
+    top: 48px;
+    right: 0;
+    overflow: hidden;
+    background-color: white;
+    padding: 5px;
+    color: black;
+}
+
+.top_menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.top_menu > a {
+    color: inherit;
+}
+
+.top_menu_wrapper__show { 
+    display: flex;
+}

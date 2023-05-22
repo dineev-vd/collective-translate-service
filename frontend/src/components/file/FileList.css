@@ -1,0 +1,10 @@
+.file-list {
+    display: flex;
+    height: 100%;
+    
+}
+
+.file-list_files {
+    flex: 1 1 auto;
+    width: 100%;
+}

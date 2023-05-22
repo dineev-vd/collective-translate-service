@@ -1,0 +1,22 @@
+@import "normalize.css";
+@import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "@blueprintjs/core/lib/css/blueprint.css";
+@import "@blueprintjs/popover2/lib/css/blueprint-popover2.css";
+
+body {
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: block;
+  font-size: 16px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:focus {
+  outline: none;
+}

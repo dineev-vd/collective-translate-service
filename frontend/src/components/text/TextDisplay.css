@@ -1,0 +1,12 @@
+.text-display {
+    overflow-y: scroll;
+    max-height: 600px;
+    height: 600px;
+    opacity: 0;
+    white-space: pre-wrap;
+    width: 100%;
+}
+
+.text-display__loaded {
+    opacity: 1;
+}
