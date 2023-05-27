@@ -11,7 +11,7 @@ async function bootstrap() {
 
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.TCP,
-    options: { port: 10000, host: 'backend' },
+    options: { port: 10000, host: 'crud' },
   });
   app.use(cookieParser());
 

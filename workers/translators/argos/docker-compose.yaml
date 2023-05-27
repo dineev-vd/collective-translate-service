@@ -1,0 +1,31 @@
+services:
+  queue-listener:
+    build:
+      context: ./queue-listener
+      dockerfile: "./Dockerfile"
+    networks:
+      - argos
+    volumes:
+      - ./queue-listener:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  argos-translator:
+    build:
+      context: ./translator
+      dockerfile: "./Dockerfile"
+    networks:
+      - argos
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2G
+    restart: always
+    healthcheck:
+      test: curl -sS http://127.0.0.1:7878 || echo 1
+      interval: 5s
+      timeout: 10s
+      retries: 3
+
+networks:
+  argos:

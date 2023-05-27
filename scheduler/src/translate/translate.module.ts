@@ -24,7 +24,7 @@ import { TranslateService } from './translate.service';
       {
         name: 'CRUD',
         transport: Transport.TCP,
-        options: { port: 10000, host: 'backend' },
+        options: { port: 10000, host: 'crud' },
       },
     ]),
   ],

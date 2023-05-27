@@ -58,7 +58,7 @@ services:
     image: minio/minio
     command: server --console-address ":9001" /data/
     networks:
-      - collective-translate-dev
+      - collective-translate
     volumes:
       - ./s3:/data
     ports:

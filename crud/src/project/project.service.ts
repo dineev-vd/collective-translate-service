@@ -22,7 +22,7 @@ const { PRODUCTION } = process.env;
 @Injectable()
 export class ProjectService implements OnApplicationBootstrap {
   async onApplicationBootstrap() {
-    // if (PRODUCTION) return;
+    if (PRODUCTION) return;
 
     if ((await this.projectRepository.findOne({ where: { id: '1' } })) != null)
       return;

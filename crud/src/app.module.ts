@@ -82,7 +82,7 @@ console.log(S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_ENDPOINT);
       database: POSTGRES_DB,
       username: POSTGRES_USER,
       password: POSTGRES_PASSWORD,
-      dropSchema: true,
+      dropSchema: !process.env.PRODUCTION,
       synchronize: true,
       entities: [
         Project,
