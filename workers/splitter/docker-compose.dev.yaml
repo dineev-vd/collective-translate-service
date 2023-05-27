@@ -1,0 +1,9 @@
+services:
+  queue-listener:
+    build:
+      context: .
+      dockerfile: './Dockerfile.dev'
+    volumes:
+      - ./:/app
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'

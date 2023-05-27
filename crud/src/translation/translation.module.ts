@@ -18,7 +18,7 @@ import { TranslationService } from './translation.service';
       name: 'pendingSegments',
     }),
     TypeOrmModule.forFeature([SegmentTranslation, Action, JobResult, Comment]),
-    LanguageModule,
+    forwardRef(() => LanguageModule),
     forwardRef(() => SuggestionsModule),
     forwardRef(() => ActionsModule),
   ],

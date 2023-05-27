@@ -9,7 +9,7 @@ export class TranslateService {
     private languageQueue: Queue,
   ) {}
 
-  queueLanguage(languageId: string) {
-    this.languageQueue.add({ languageId });
+  queueLanguage(languageId: string, type: 'argos' | 'yandex') {
+    this.languageQueue.add({ languageId, type });
   }
 }

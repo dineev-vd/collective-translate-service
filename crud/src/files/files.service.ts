@@ -523,7 +523,7 @@ export class FilesService implements OnApplicationBootstrap {
         file,
         original,
       );
-      // this should be fast as fuck
+
       const identifiers = await this.translationsService.insertTextSegments(
         segments,
       );
@@ -553,5 +553,51 @@ export class FilesService implements OnApplicationBootstrap {
         status: FileStatus.NEW,
       });
     }
+  }
+
+  async processFile(job: {
+    id: string;
+    data: {
+      shouldTranslate: boolean;
+      order: number;
+      translationText: string;
+    }[];
+  }) {
+    const file = await this.fileRepository.findOne({ where: { id: job.id } });
+
+    await this.translationsService.removeSegmentsFromFile(file.id);
+
+    const original = await this.languageService.getOriginalLanguage(
+      file.projectId,
+    );
+
+    const segments: Partial<SegmentTranslation>[] = job.data.map((s) => ({
+      ...s,
+      translationLanguage: original,
+      file,
+    }));
+
+    const identifiers = await this.translationsService.insertTextSegments(
+      segments,
+    );
+    //console.log(identifiers)
+
+    const actions = identifiers.map((i) => {
+      const action: DeepPartial<Action> = {};
+      action.change = '';
+      action.comment = 'Сегмент создан';
+      action.segment = { id: i.id };
+
+      return action;
+    });
+
+    console.log('fileSplit');
+    await this.actionsService.insertActions(actions);
+    console.log('actions inserted');
+
+    await this.fileRepository.update(file.id, {
+      status: FileStatus.SPLITTED,
+    });
+    console.log('text segments saved');
   }
 }

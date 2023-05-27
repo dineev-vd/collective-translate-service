@@ -45,4 +45,7 @@ export class Comment {
 
   @CreateDateColumn()
   createdDate: Date;
+
+  @Column({ default: 0 })
+  reportsCount: number;
 }

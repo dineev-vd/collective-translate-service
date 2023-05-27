@@ -150,11 +150,15 @@ class ApiClass {
     endpoints: Object[] | Object,
     params?: {
       [key: string]: Object[] | Object;
-    }
+    },
+    overrideEndpoint?: string
   ): string {
     const endpointsParsed = Array.isArray(endpoints) ? endpoints : [endpoints];
 
-    const endpointsString = [API_ENDPOINT, ...endpointsParsed].join("/");
+    const endpointsString = [
+      overrideEndpoint ?? API_ENDPOINT,
+      ...endpointsParsed,
+    ].join("/");
     const paramString = params
       ? Object.entries(params)
           .map(([key, value]) => {
@@ -274,7 +278,7 @@ class ApiClass {
   }
 
   async splitFile(id: number, regexp?: string) {
-    const uri = this.makeUri([FILE_ENDPOINT, id, "split"]);
+    const uri = this.makeUri([FILE_ENDPOINT, id, "split"], {}, "api/scheduler");
     return this.postJson(uri, { regexp: regexp });
   }
 

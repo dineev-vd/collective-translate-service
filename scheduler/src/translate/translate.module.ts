@@ -12,7 +12,10 @@ import { TranslateService } from './translate.service';
       name: 'pending_languages',
     }),
     BullModule.registerQueue({
-      name: 'pending_segments',
+      name: 'argos_pending_segments',
+    }),
+    BullModule.registerQueue({
+      name: 'yandex_pending_segments',
     }),
     BullModule.registerQueue({
       name: 'ready_segments',

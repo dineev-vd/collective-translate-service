@@ -13,10 +13,12 @@ const SearchResults: React.FC = () => {
   const { data } = useGetProjectsQuery({ query, tags });
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <h3>Проекты</h3>
       <input
         value={query}
         onChange={(e) => setParams({ query: e.target.value })}
+        placeholder="Начните вводить название проекта..."
       />
       <TagSelect tags={tags} setTags={setTags} disableCreate />
       <div className="search-results">

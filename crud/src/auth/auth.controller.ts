@@ -1,14 +1,14 @@
 import {
-  Controller,
-  Post,
-  UseGuards,
-  Body,
   BadRequestException,
+  Body,
+  Controller,
   Get,
+  Post,
   Req,
-  Res,
   Request,
+  Res,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import {
   AUTH_ENDPOINT,
@@ -20,10 +20,10 @@ import { JwtDto } from 'common/dto/jwt.dto';
 import { PostUserDto } from 'common/dto/user.dto';
 import { Request as RequestExpress, Response } from 'express';
 import { LocalAuthGuard, RefreshAuthGuard } from 'guards/simple-guards.guard';
+import ms from 'ms';
 import { UserService } from 'user/user.service';
 import { ExtendedRequest } from 'util/ExtendedRequest';
 import { AuthService } from './auth.service';
-import ms from 'ms';
 
 @Controller(AUTH_ENDPOINT)
 export class AuthController {
@@ -75,8 +75,6 @@ export class AuthController {
     @Request() { user }: ExtendedRequest,
     @Res({ passthrough: true }) res: Response,
   ) {
-    console.log(user);
-
     if (!user) {
       throw new UnauthorizedException();
     }

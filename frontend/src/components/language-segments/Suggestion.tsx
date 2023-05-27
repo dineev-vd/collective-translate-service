@@ -1,3 +1,4 @@
+import { Icon } from "@blueprintjs/core";
 import { GetProjectDto } from "common/dto/project.dto";
 import { GetSuggestionDto } from "common/dto/suggestion.dto";
 import { useSelector } from "react-redux";
@@ -52,19 +53,32 @@ const Suggestion: React.FC<{
       </div>
       {(project.editorsId.includes(user.id.toString()) ||
         project.ownerId == user.id.toString()) && (
-        <>
-          <button
-            style={{ marginRight: "5px" }}
-            onClick={() => handleApprove()}
-          >
-            Одобрить
-          </button>
-          <button onClick={() => handleDeny()}>Отклонить</button>
-          <button onClick={() => triggerVote(suggestion.id)}>Голосовать</button>
-          {suggestion.votersIds.length && (
-            <span>{suggestion.votersIds.length} лайков</span>
-          )}
-        </>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span>
+            <button
+              style={{ marginRight: "5px" }}
+              onClick={() => handleApprove()}
+            >
+              Одобрить
+            </button>
+            <button onClick={() => handleDeny()}>Отклонить</button>
+          </span>
+          <span>
+            <span
+              style={{ cursor: "pointer", marginLeft: "auto" }}
+              onClick={() => triggerVote(suggestion.id)}
+            >
+              <Icon
+                icon={
+                  suggestion.votersIds.includes(user.id) ? "star" : "star-empty"
+                }
+              />
+            </span>
+            {suggestion.votersIds.length && (
+              <span>{suggestion.votersIds.length}</span>
+            )}
+          </span>
+        </div>
       )}
     </div>
   );

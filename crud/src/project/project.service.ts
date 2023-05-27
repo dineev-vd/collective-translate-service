@@ -24,8 +24,6 @@ export class ProjectService implements OnApplicationBootstrap {
   async onApplicationBootstrap() {
     // if (PRODUCTION) return;
 
-    console.log('kek');
-
     if ((await this.projectRepository.findOne({ where: { id: '1' } })) != null)
       return;
 

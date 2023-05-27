@@ -1,4 +1,4 @@
-import { Controller, Param, Post } from '@nestjs/common';
+import { Controller, Param, Post, Query } from '@nestjs/common';
 import { TranslateService } from './translate.service';
 
 @Controller('translate')
@@ -7,7 +7,8 @@ export class TranslateController {
 
   @Post(':id/queueTranslation') async queueTranslation(
     @Param('id') languageId: string,
+    @Query('type') type: 'argos' | 'yandex',
   ) {
-    return this.translateService.queueLanguage(languageId);
+    return this.translateService.queueLanguage(languageId, type);
   }
 }

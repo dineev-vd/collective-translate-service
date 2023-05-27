@@ -27,6 +27,7 @@ const TagSelect: FC<TagSelectProps> = ({ setTags, tags, disableCreate }) => {
       popoverProps={{ minimal: true, matchTargetWidth: true }}
       items={mergedTags ?? []}
       noResults={"Нет результатов"}
+      placeholder="Начните вводить название тэга..."
       itemRenderer={(item, { handleClick }) => {
         return (
           <MenuItem2

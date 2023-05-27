@@ -9,6 +9,7 @@ const LanguageDetails: React.FC = () => {
   const { languageId } = useParams();
   const [language, setLanguage] = useState<GetTranslateLanguage>();
   const [assemblies, setAssemblies] = useState<GetAssemblyDto[]>();
+  const [type, setType] = useState<string>("argos");
 
   useEffect(() => {
     api.getLanguage(languageId).then(([response, _]) => {
@@ -44,14 +45,17 @@ const LanguageDetails: React.FC = () => {
           >
             Собрать
           </button>
-          <select style={{ width: "200px", marginTop: "20px" }}>
-            <option>Yandex Translate</option>
-            <option>Argos</option>
-            <option>Перевод накопления</option>
+          <select
+            style={{ width: "200px", marginTop: "20px" }}
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value={"yandex"}>Yandex Translate</option>
+            <option value={"argos"}>Argos</option>
           </select>
           <button
             style={{ width: "100px", marginTop: "20px" }}
-            onClick={() => trigger(language.id)}
+            onClick={() => trigger({ translationId: language.id, type })}
           >
             Перевести
           </button>

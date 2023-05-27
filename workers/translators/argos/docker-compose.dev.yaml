@@ -2,17 +2,17 @@ services:
   queue-listener:
     build:
       context: ./queue-listener
-      dockerfile: "./Dockerfile"
+      dockerfile: "./Dockerfile.dev"
     networks:
       - argos
     volumes:
       - ./queue-listener:/app
     extra_hosts:
       - "host.docker.internal:host-gateway"
-  translator:
+  argos-translator:
     build:
       context: ./translator
-      dockerfile: "./Dockerfile"
+      dockerfile: "./Dockerfile.dev"
     networks:
       - argos
     deploy:

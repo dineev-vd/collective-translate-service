@@ -24,10 +24,19 @@ const GlossaryEntries: FC = () => {
               glossaryEntries.map(
                 ({ id, description, phrase, proposedTranslation }) => (
                   <div>
-                    <p>{id}</p>
-                    <p>{phrase}</p>
-                    <p>{description}</p>
-                    <p>{proposedTranslation}</p>
+                    <div>
+                      <p>
+                        <b>{phrase}</b>
+                      </p>
+                      <div>
+                        Описание
+                        <p>{description}</p>
+                      </div>
+                      <div>
+                        Предложенный перевод
+                        <p>{proposedTranslation}</p>
+                      </div>
+                    </div>
                   </div>
                 )
               )

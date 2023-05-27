@@ -1,0 +1,11 @@
+services:
+  translator:
+    build:
+      context: '.'
+      dockerfile: Dockerfile.dev
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'

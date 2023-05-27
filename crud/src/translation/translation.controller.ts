@@ -16,6 +16,7 @@ import { TranslationService } from './translation.service';
 
 import { MessagePattern } from '@nestjs/microservices';
 import { PostTranslationDto } from 'common/dto/translate-piece.dto';
+import SegmentTranslation from 'entities/segment-translation.entity';
 import { JwtAuthGuard } from 'guards/simple-guards.guard';
 import { SuggestionsService } from 'suggestions/suggestions.service';
 import { ExtendedRequest } from 'util/ExtendedRequest';
@@ -136,9 +137,28 @@ export class PiecesController {
   ): Promise<
     { id: string; text: string; fromLanguage: string; toLanguage: string }[]
   > {
-    const segments = await this.translationService.getTranslationsByLanguage({
-      languageId,
-    });
+    let segments: SegmentTranslation[] = [];
+    let page = 1;
+
+    while (true) {
+      const curSegments =
+        await this.translationService.getTranslationsByLanguage({
+          languageId,
+          take: 1000,
+          page: page++,
+        });
+
+      console.log(curSegments);
+
+      if (!curSegments.data.length) {
+        break;
+      }
+
+      segments = [...segments, ...curSegments.data];
+    }
+
+    console.log(segments);
+
     const language = await this.languageService.getTranslationLanguageById(
       languageId,
     );
@@ -146,7 +166,7 @@ export class PiecesController {
       language.projectId,
     );
 
-    return segments.data.map((segment) => ({
+    return segments.map((segment) => ({
       id: segment.id,
       text: segment.translationText,
       fromLanguage: originalLanguage.language.toString(),

@@ -15,7 +15,7 @@ import { AppService } from './app.service';
     }),
     BullModule.registerQueue(
       {
-        name: 'pending_segments',
+        name: 'argos_pending_segments',
       },
       { name: 'ready_segments' },
     ),

@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios';
 import { Job, Queue } from 'bull';
 
 //
-@Processor('pending_segments')
+@Processor('argos_pending_segments')
 export class AppService {
   constructor(
     private readonly httpService: HttpService,
@@ -27,7 +27,7 @@ export class AppService {
       try {
         res = await this.httpService
           .post(
-            'http://translator:7878/translate',
+            'http://argos-translator:7878/translate',
             {
               text: job.data.text,
               from: job.data.fromLanguage,

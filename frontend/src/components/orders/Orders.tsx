@@ -18,12 +18,16 @@ const Orders: FC = () => {
       style={{ display: "flex", flexDirection: "column", gap: 8, width: 650 }}
     >
       <h2>Заказы</h2>
-      <input value={query} onChange={(e) => setQuery(e.target.value)} />
+      <input
+        placeholder="Поиск по названию..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
       <TagSelect tags={tags} setTags={setTags} disableCreate />
       <hr style={{ width: "100%" }} />
       {orders &&
         (orders.length ? (
-          orders?.map(({ description, id, projectId, applied, project }) => (
+          orders?.map(({ description, id, applied, project }) => (
             <div>
               <h2>{project.name}</h2>
               <p>{description}</p>

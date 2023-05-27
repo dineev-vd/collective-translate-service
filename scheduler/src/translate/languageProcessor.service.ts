@@ -7,12 +7,14 @@ import { Job, Queue } from 'bull';
 export class LanguageProcessor {
   constructor(
     @Inject('CRUD') private crud: ClientProxy,
-    @InjectQueue('pending_segments')
-    private segmentsQueue: Queue,
+    @InjectQueue('argos_pending_segments')
+    private argosQueue: Queue,
+    @InjectQueue('yandex_pending_segments')
+    private yandexQueue: Queue,
   ) {}
 
   @Process({ concurrency: 1 })
-  async translate(job: Job<{ languageId: string }>) {
+  async translate(job: Job<{ languageId: string; type: 'argos' | 'yandex' }>) {
     const pattern = { cmd: 'get_language_segments' };
     const payload = job.data.languageId;
 
@@ -25,12 +27,25 @@ export class LanguageProcessor {
       }[]
     >(pattern, payload);
 
-    segmentsObservable.subscribe({
-      next: (segments) =>
-        this.segmentsQueue.addBulk(
-          segments.map((segment) => ({ data: segment })),
-        ),
-    });
+    switch (job.data.type) {
+      case 'argos':
+        segmentsObservable.subscribe({
+          next: (segments) =>
+            this.argosQueue.addBulk(
+              segments.map((segment) => ({ data: segment })),
+            ),
+        });
+        break;
+
+      case 'yandex':
+        segmentsObservable.subscribe({
+          next: (segments) =>
+            this.yandexQueue.addBulk(
+              segments.map((segment) => ({ data: segment })),
+            ),
+        });
+        break;
+    }
 
     job.finished();
   }
